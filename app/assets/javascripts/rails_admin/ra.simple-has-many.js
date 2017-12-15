@@ -40,7 +40,7 @@
       this.selection = $('<select class="form-control ra-multiselect-selection" multiple="multiple"></select>');
       this.columns.right.append(this.selection);
       this.selection.wrap('<div class="wrapper"/>');
-      this.remove = $('<br/><a style="margin-left:10px; margin-top:5px;" href="#" class="ra-multiselect-item-remove btn btn-sm btn-danger"><i class=\"icon-plus icon-minus\"></i></a>');
+      this.remove = $('<br/><a style="margin-left:10px; margin-top:5px;" href="#" class="ra-multiselect-item-remove btn btn-sm btn-danger"><i class=\"icon-minus\"></i></a>');
       help_block = this.wrapper.parent().find('.help-block')[0];
       this.remove.insertBefore(help_block)
       if (this.options.sortable) {
