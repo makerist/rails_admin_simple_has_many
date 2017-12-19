@@ -37,22 +37,22 @@
       this.collection = $('<select></select>');
       this.collection.addClass("form-control ra-multiselect-collection");
       this.collection.wrap('<div class="wrapper"/>');
-      this.selection = $('<select class="form-control ra-multiselect-selection" multiple="multiple"></select>');
+      this.selection  = $('<select class="form-control ra-multiselect-selection" multiple="multiple"></select>');
       this.columns.right.append(this.selection);
       this.selection.wrap('<div class="wrapper"/>');
-      this.remove = $('<br/><a style="margin-left:10px; margin-top:5px;" href="#" class="ra-multiselect-item-remove btn btn-sm btn-danger"><i class=\"icon-minus\"></i></a>');
-      help_block = this.wrapper.parent().find('.help-block')[0];
+      this.remove     = $('<br/><a style="margin-left:10px; margin-top:5px;" href="#" class="ra-multiselect-item-remove btn btn-sm btn-danger"><i class=\"icon-minus\"></i></a>');
+      help_block      = this.wrapper.parent().find('.help-block')[0];
       this.remove.insertBefore(help_block)
       if (this.options.sortable) {
-        this.up = $('<br/><a href="#" style="margin-left:10px; margin-top:5px;" class="ra-multiselect-item-up btn btn-default btn-xs"><span class="glyphicon glyphicon-arrow-up"></span></a>');
+        this.up   = $('<br/><a href="#" style="margin-left:10px; margin-top:5px;" class="ra-multiselect-item-up btn btn-default btn-xs"><span class="glyphicon glyphicon-arrow-up"></span></a>');
         this.down = $('<br/><a href="#" style="margin-left:10px; margin-top:5px;" class="ra-multiselect-item-down btn btn-default btn-xs"><span class="glyphicon glyphicon-arrow-down"></span></a>');
         this.up.insertBefore(help_block)
         this.down.insertBefore(help_block)
       }
 
       this.element.css({display: "none"});
-      this.tooManyObjectsPlaceholder = $('<option disabled="disabled" />').text(RailsAdmin.I18n.t("too_many_objects"));
-      this.noObjectsPlaceholder = $('<option disabled="disabled" />').text(RailsAdmin.I18n.t("no_objects"))
+      this.tooManyObjectsPlaceholder = $('<option disabled="disabled" />').text(RailsAdmin.I18n.t('too_many_objects'));
+      this.noObjectsPlaceholder      = $('<option disabled="disabled" />').text(RailsAdmin.I18n.t('no_objects'))
 
       if(this.options.xhr){
         this.collection.append(this.tooManyObjectsPlaceholder);
@@ -95,11 +95,10 @@
           return
         selected_id = $(':selected', widget.selection)[0].value
         title = $(':selected', widget.selection)[0].title
-        model_name = this.options.model_name
+        model_name  = this.options.model_name
         delete_path = Routes.rails_admin_delete_path(model_name, selected_id)
 
-        var answer = confirm ("Are you sure you want to delete '" + title + "' ? " +
-            "\nThis will take effect immediately and CANNOT be undone");
+        var answer = confirm (RailsAdmin.I18n.t("delete_confirmation"));
         if (answer)
         {
           $.ajax({
@@ -111,10 +110,9 @@
                   widget._deSelect($(':selected', widget.selection));
               },
               error: function() {
-                alert("Error: Could not delete dimension, please try again")
+                  alert(RailsAdmin.I18n.t('delete_error'))
               }
           });
-
         }
         e.preventDefault();
       }.bind(this));
