@@ -98,7 +98,7 @@
         model_name  = this.options.model_name
         delete_path = Routes.rails_admin_delete_path(model_name, selected_id)
 
-        var answer = confirm ("<%= I18n.t("admin.js.delete_confirmation") %>");
+        var answer = confirm(RailsAdmin.I18n.t("delete_confirmation"));
         if (answer)
         {
           $.ajax({
